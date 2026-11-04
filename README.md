@@ -4,15 +4,17 @@ Standalone HTML pages for MAZZ.AI, the AI call & chat assistant for restaurants.
 
 ## Pages
 
-| Page | File | Live preview | Notes |
-|---|---|---|---|
-| Sign in | `sign-in.html` | [Preview](https://claude.ai/artifact/QFiP4bKHHb2rk9W1GaZERJ) | Restaurant owner login |
-| Landing page | `landing.html` | [Preview](https://claude.ai/artifact/Td8khqVDiE8pBFFNqbMWEC) | Public marketing page, pricing teaser, Founding Partner callout |
-| Home (dashboard) | `home.html` | [Preview](https://claude.ai/artifact/S5PFpbs1a8agBXeqvBEkYB) | Logged-in restaurant dashboard: pilot progress, call stats, quick actions |
-| Blog | `blog.html` | [Preview](https://claude.ai/artifact/W2XFkmcUYRaQyhmCE6SGGu) | Featured article + post list |
-| Pricing | `pricing.html` | [Preview](https://claude.ai/artifact/EEpL3wvcAgD8S9b3p3eY17) | Pilot offer, AI adoption roadmap, rate + interactive cost calculator, Founding Partner Program |
-| FAQ | `faq.html` | [Preview](https://claude.ai/artifact/9NX5PvCtUNjpzrBTLKjZMT) | Accordion FAQ grouped by General / Pilot & pricing / Founding Partner / Technical |
-| Terms & Conditions | `terms.html` | [Preview](https://claude.ai/artifact/D2uCkhnJ8uBy6V893bfqFi) | Legal terms with sticky table of contents |
+| Page | File | Notes |
+|---|---|---|
+| Sign in | [`sign-in.html`](./sign-in.html) | Restaurant owner login |
+| Landing page | [`landing.html`](./landing.html) | Public marketing page, pricing teaser, Founding Partner callout |
+| Home (dashboard) | [`home.html`](./home.html) | Logged-in restaurant dashboard: pilot progress, call stats, quick actions |
+| Blog | [`blog.html`](./blog.html) | Featured article + post list |
+| Pricing | [`pricing.html`](./pricing.html) | Pilot offer, AI adoption roadmap, rate + interactive cost calculator, Founding Partner Program |
+| FAQ | [`faq.html`](./faq.html) | Accordion FAQ grouped by General / Pilot & pricing / Founding Partner / Technical |
+| Terms & Conditions | [`terms.html`](./terms.html) | Legal terms with sticky table of contents |
+
+Click a filename above on GitHub to view the source, or download/clone the repo and open the file directly in a browser to see it rendered — GitHub doesn't render raw HTML inline.
 
 ## Opening the pages
 
