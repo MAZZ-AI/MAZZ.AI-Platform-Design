@@ -1,0 +1,187 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Terms &amp; Conditions</title>
+<style>
+  :root{
+    --bg:#0a0a0a; --bg-raised:#111110; --bg-card:#131310; --line:#2a2a22;
+    --ink:#f5f5f0; --ink-dim:#a2a298; --ink-faint:#6b6b62;
+    --lime:#c6f135; --lime-soft:#e9ffa8; --lime-dim:#4d5a16; --lime-wash:#171a0d;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  body{ background:var(--bg); color:var(--ink); font-family:'Inter',ui-sans-serif,system-ui,sans-serif; font-size:14.5px; line-height:1.7;
+    padding-left:max(16px, env(safe-area-inset-left,0px)); padding-right:max(16px, env(safe-area-inset-right,0px)); position:relative; overflow-x:hidden; }
+  a{ color:var(--lime-soft); }
+  .glow{ position:fixed; top:-30vmax; right:-28vmax; width:56vmax; height:56vmax; filter:blur(70px); z-index:0; pointer-events:none;
+    background:radial-gradient(circle at center, rgba(198,241,53,.3), rgba(198,241,53,0) 62%); }
+  .shell{ max-width:1080px; margin:0 auto; position:relative; z-index:1; }
+
+  nav{ display:flex; align-items:center; justify-content:space-between; padding-block:22px; }
+  .brand{ display:flex; align-items:baseline; gap:1px; text-decoration:none; color:#ffffff; }
+  .brand span{ font-family:'Archivo Black',sans-serif; font-size:21px; }
+  .brand .ai{ color:var(--lime); }
+  .navlinks{ display:flex; gap:28px; font-size:14px; color:#ffffff; }
+  .navlinks a{ text-decoration:none; }
+  .navlinks a:hover{ color:var(--lime); }
+  .btn{ display:inline-flex; align-items:center; border-radius:3px; font-weight:700; font-size:13.5px; padding:10px 18px; border:1px solid transparent; text-decoration:none; }
+  .btn-lime{ background:var(--lime); color:#0a0a0a; }
+  @media (max-width:700px){ .navlinks{ display:none; } }
+
+  header.page{ padding:24px 0 36px; }
+  .eyebrow{ font-family:'Space Mono',ui-monospace,monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--lime); margin:0 0 10px; }
+  h1{ font-family:'Archivo Black',sans-serif; font-size:clamp(28px,4.4vw,40px); margin:0 0 10px; }
+  .updated{ color:var(--ink-faint); font-size:12.5px; font-family:'Space Mono',monospace; }
+
+  .layout{ display:grid; grid-template-columns:220px 1fr; gap:40px; align-items:start; padding-bottom:60px; }
+  @media (max-width:860px){ .layout{ grid-template-columns:1fr; } }
+
+  .toc{ display:block; position:sticky; top:24px; background:var(--bg-card); border:1px solid var(--line); border-radius:6px; padding:18px; }
+  .toc .t{ font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); margin:0 0 10px; font-weight:600; }
+  .toc a{ display:block; font-size:12.5px; color:var(--ink-dim); text-decoration:none; padding:6px 0; border-bottom:1px dashed var(--line); }
+  .toc a:last-child{ border-bottom:none; }
+  .toc a:hover{ color:var(--lime-soft); }
+  @media (max-width:860px){ .toc{ position:relative; top:0; } }
+
+  article{ min-width:0; }
+  .doc{ background:var(--bg-card); border:1px solid var(--line); border-radius:6px; padding:40px; max-width:72ch; }
+  @media (max-width:560px){ .doc{ padding:26px 20px; } }
+  section.clause{ margin-bottom:34px; scroll-margin-top:20px; }
+  section.clause:last-child{ margin-bottom:0; }
+  section.clause h2{ font-family:'Inter',sans-serif; font-size:16px; font-weight:800; margin:0 0 4px; display:flex; gap:10px; align-items:baseline; }
+  section.clause h2 .n{ font-family:'Space Mono',monospace; color:var(--lime); font-size:12.5px; font-weight:400; }
+  section.clause p{ color:var(--ink-dim); margin:10px 0; }
+  section.clause ul{ color:var(--ink-dim); margin:10px 0; padding-left:20px; }
+  section.clause li{ margin-bottom:6px; }
+  section.clause strong{ color:var(--ink); }
+
+  footer{ border-top:1px solid var(--line); padding-block:28px 40px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; color:var(--ink-faint); font-size:12.5px; }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap">
+
+<div class="glow"></div>
+<div class="shell">
+  <nav>
+    <a class="brand" href="#"><span>MAZZ</span><span class="ai">.AI</span></a>
+    <div class="navlinks"><a href="#">Home</a><a href="#">Pricing</a><a href="#">FAQ</a><a href="#">Blog</a></div>
+    <a class="btn btn-lime" href="#">Sign in</a>
+  </nav>
+
+  <header class="page">
+    <p class="eyebrow">Legal</p>
+    <h1>Terms &amp; Conditions</h1>
+    <div class="updated">Last updated November 4, 2026</div>
+  </header>
+
+  <div class="layout">
+    <nav class="toc">
+      <p class="t">On this page</p>
+      <a href="#acceptance">1. Acceptance of terms</a>
+      <a href="#service">2. The service</a>
+      <a href="#pilot">3. The pilot program</a>
+      <a href="#fees">4. Fees &amp; billing</a>
+      <a href="#founding">5. Founding Partner Program</a>
+      <a href="#limitations">6. Service limitations &amp; handoff</a>
+      <a href="#data">7. Data &amp; privacy</a>
+      <a href="#ip">8. Intellectual property</a>
+      <a href="#termination">9. Termination</a>
+      <a href="#liability">10. Limitation of liability</a>
+      <a href="#changes">11. Changes to these terms</a>
+      <a href="#law">12. Governing law</a>
+      <a href="#contact">13. Contact</a>
+    </nav>
+
+    <article>
+      <div class="doc">
+
+        <section class="clause" id="acceptance">
+          <h2><span class="n">1</span>Acceptance of terms</h2>
+          <p>These Terms &amp; Conditions ("Terms") govern your restaurant's ("you," "your," "the Restaurant") access to and use of the MAZZ.AI call and chat assistant (the "Service"), provided by MAZZ.AI ("we," "us," "our"). By signing up for a pilot, creating an account, or using the Service, you agree to be bound by these Terms.</p>
+        </section>
+
+        <section class="clause" id="service">
+          <h2><span class="n">2</span>The service</h2>
+          <p>MAZZ.AI answers incoming phone calls and chat messages on your restaurant's behalf. The Service takes orders from the menu information you provide, answers questions about dishes, ingredients, and allergens, quotes delivery times and zones, and hands conversations to your staff when appropriate.</p>
+          <p>The Service is trained on the menu, hours, and policies you supply. You are responsible for keeping that information accurate and current; MAZZ.AI relies on it to respond to customers.</p>
+        </section>
+
+        <section class="clause" id="pilot">
+          <h2><span class="n">3</span>The pilot program</h2>
+          <p>New restaurants receive a <strong>3-month free pilot</strong> at no cost, during which the Service is deployed inside your real call and chat volume so you can measure its performance.</p>
+          <p>The pilot follows a fixed AI adoption roadmap, with a human available at every stage:</p>
+          <ul>
+            <li><strong>Month 1:</strong> 25% of volume handled by AI, 75% by a human.</li>
+            <li><strong>Month 2:</strong> 50% AI, 50% human.</li>
+            <li><strong>Month 3:</strong> 75% AI, 25% human.</li>
+            <li><strong>After the pilot:</strong> 100% AI, with handoff to a human always available.</li>
+          </ul>
+          <p>There is no contract and no fee during the 3-month pilot. You may stop using the Service at any point during this period without charge.</p>
+        </section>
+
+        <section class="clause" id="fees">
+          <h2><span class="n">4</span>Fees &amp; billing</h2>
+          <p>After the pilot ends, use of the Service is billed at <strong>6 EGP per minute</strong> of AI-handled call and chat time. The <strong>first 1,000 minutes each month are free</strong>, for the life of your account. Minutes beyond that are billed monthly in arrears.</p>
+          <p>There are no setup fees, seat fees, or charges beyond per-minute usage, except as agreed separately in writing. You may pause or cancel the Service at any time after the pilot; charges already incurred remain payable.</p>
+        </section>
+
+        <section class="clause" id="founding">
+          <h2><span class="n">5</span>Founding Partner Program</h2>
+          <p>The first three (3) restaurants to begin a pilot are designated Founding Partners. In addition to the standard pilot and pricing terms, Founding Partners receive:</p>
+          <ul>
+            <li><strong>12 months</strong> of maintenance and support from their pilot start date.</li>
+            <li><strong>Free development</strong> of requested additional features. Where a requested feature increases the underlying per-minute cost of running the Service, that specific cost increase is payable by the Founding Partner; the development work itself remains free of charge.</li>
+            <li><strong>Priority</strong> on feature development ahead of non-Founding-Partner accounts.</li>
+          </ul>
+          <p>Founding Partner status is granted on a first-come, first-served basis and is limited to three accounts in total.</p>
+        </section>
+
+        <section class="clause" id="limitations">
+          <h2><span class="n">6</span>Service limitations &amp; handoff</h2>
+          <p>MAZZ.AI is an AI system and, like any such system, may misunderstand a request, mishear an order, or fail to resolve a customer's issue. The Service handles custom and special-request orders directly. It is designed to recognize situations it should not handle alone — including complaints and anything ambiguous — and hand them to your staff with the relevant context.</p>
+          <p>You remain responsible for your restaurant's menu, pricing, order fulfillment, and customer service. We are not liable for losses arising from an inaccurate menu or policy information you provided, or from a human handoff that was not accepted by your staff in time.</p>
+        </section>
+
+        <section class="clause" id="data">
+          <h2><span class="n">7</span>Data &amp; privacy</h2>
+          <p>Call recordings, chat transcripts, and order data collected through the Service are used to operate, support, and improve your restaurant's assistant. This data is not sold to third parties and is not shared with other businesses using MAZZ.AI.</p>
+          <p>You are responsible for informing your customers, where required by applicable law, that calls or chats may be handled by an automated assistant and may be recorded.</p>
+        </section>
+
+        <section class="clause" id="ip">
+          <h2><span class="n">8</span>Intellectual property</h2>
+          <p>MAZZ.AI retains all rights to the underlying Service, software, and models. You retain all rights to your menu content, branding, and customer data. Features developed specifically for a Founding Partner under Section 5 remain part of the MAZZ.AI platform unless otherwise agreed in writing.</p>
+        </section>
+
+        <section class="clause" id="termination">
+          <h2><span class="n">9</span>Termination</h2>
+          <p>You may cancel the Service at any time by notifying us; cancellation during the pilot incurs no charge. We may suspend or terminate the Service for non-payment, misuse, or breach of these Terms, with reasonable notice where practical.</p>
+        </section>
+
+        <section class="clause" id="liability">
+          <h2><span class="n">10</span>Limitation of liability</h2>
+          <p>To the extent permitted by law, MAZZ.AI's liability for any claim arising from the Service is limited to the fees paid by you in the three (3) months preceding the claim. We are not liable for indirect, incidental, or consequential damages, including lost revenue from a missed or mishandled order.</p>
+        </section>
+
+        <section class="clause" id="changes">
+          <h2><span class="n">11</span>Changes to these terms</h2>
+          <p>We may update these Terms from time to time. Material changes affecting pricing, the pilot program, or the Founding Partner Program will be communicated to affected accounts before taking effect. Continued use of the Service after changes take effect constitutes acceptance.</p>
+        </section>
+
+        <section class="clause" id="law">
+          <h2><span class="n">12</span>Governing law</h2>
+          <p>These Terms are governed by the laws of the Arab Republic of Egypt, without regard to conflict-of-law principles. Any dispute arising from these Terms will be subject to the exclusive jurisdiction of the competent courts of Cairo, Egypt.</p>
+        </section>
+
+        <section class="clause" id="contact">
+          <h2><span class="n">13</span>Contact</h2>
+          <p>Questions about these Terms, billing, or the Founding Partner Program can be directed to our team through the dashboard or the contact details provided during onboarding.</p>
+        </section>
+
+      </div>
+    </article>
+  </div>
+
+  <footer>
+    <span>© 2026 MAZZ.AI. All rights reserved.</span>
+    <span>Cairo, Egypt</span>
+  </footer>
+</div>

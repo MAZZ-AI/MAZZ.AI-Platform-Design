@@ -1,0 +1,140 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>MAZZ.AI Blog</title>
+<style>
+  :root{
+    --bg:#0a0a0a; --bg-raised:#111110; --bg-card:#131310; --line:#2a2a22;
+    --ink:#f5f5f0; --ink-dim:#a2a298; --ink-faint:#6b6b62;
+    --lime:#c6f135; --lime-soft:#e9ffa8; --lime-dim:#4d5a16; --lime-wash:#171a0d;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  body{ background:var(--bg); color:var(--ink); font-family:'Inter',ui-sans-serif,system-ui,sans-serif; font-size:15px; line-height:1.65;
+    padding-left:max(16px, env(safe-area-inset-left,0px)); padding-right:max(16px, env(safe-area-inset-right,0px)); position:relative; overflow-x:hidden; }
+  a{ color:inherit; text-decoration:none; }
+  .glow{ position:fixed; top:-30vmax; right:-28vmax; width:60vmax; height:60vmax; filter:blur(70px); z-index:0; pointer-events:none;
+    background:radial-gradient(circle at center, rgba(198,241,53,.4), rgba(198,241,53,0) 62%); }
+  .shell{ max-width:1020px; margin:0 auto; position:relative; z-index:1; }
+
+  nav{ display:flex; align-items:center; justify-content:space-between; padding-block:22px; }
+  .brand{ display:flex; align-items:baseline; gap:1px; color:#ffffff; }
+  .brand span{ font-family:'Archivo Black',sans-serif; font-size:21px; }
+  .brand .ai{ color:var(--lime); }
+  .navlinks{ display:flex; gap:28px; font-size:14px; color:#ffffff; }
+  .navlinks a:hover{ color:var(--lime); }
+  .btn{ display:inline-flex; align-items:center; border-radius:3px; font-weight:700; font-size:13px; padding:9px 16px; border:1px solid transparent; }
+  .btn-lime{ background:var(--lime); color:#0a0a0a; }
+  @media (max-width:700px){ .navlinks{ display:none; } }
+
+  header.page{ padding:30px 0 46px; }
+  .eyebrow{ font-family:'Space Mono',ui-monospace,monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--lime); margin:0 0 10px; }
+  h1{ font-family:'Archivo Black',sans-serif; font-size:clamp(30px,5vw,46px); margin:0 0 12px; text-wrap:balance; }
+  header.page p{ color:var(--ink-dim); max-width:520px; margin:0; }
+
+  .featured{ display:grid; grid-template-columns:1fr; gap:0; background:var(--bg-card); border:1px solid var(--line); border-radius:6px; padding:36px; margin-bottom:46px; position:relative; }
+  .featured::before{ content:"Featured"; position:absolute; top:18px; right:20px; font-family:'Space Mono',monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--lime-soft); background:var(--lime-wash); border:1px solid var(--lime-dim); padding:3px 9px; border-radius:3px; }
+  .meta{ display:flex; gap:14px; align-items:center; font-family:'Space Mono',monospace; font-size:11.5px; color:var(--ink-faint); margin-bottom:14px; }
+  .meta .tag{ color:var(--lime); }
+  .featured h2{ font-family:'Archivo Black',sans-serif; font-size:clamp(22px,3.4vw,30px); margin:0 0 16px; max-width:720px; text-wrap:balance; }
+  .article-body{ max-width:65ch; color:var(--ink-dim); }
+  .article-body p{ margin:0 0 16px; }
+  .article-body strong{ color:var(--ink); }
+  .pull{ border-left:2px solid var(--lime); padding-left:16px; margin:22px 0; color:var(--lime-soft); font-style:italic; font-size:14.5px; }
+
+  .sec-label{ font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); margin:0 0 18px; font-weight:600; }
+  .grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:54px; }
+  @media (max-width:680px){ .grid{ grid-template-columns:1fr; } }
+  .card{ background:var(--bg-raised); border:1px solid var(--line); border-radius:6px; padding:22px; display:flex; flex-direction:column; min-width:0; }
+  .card .meta{ margin-bottom:10px; font-size:11px; }
+  .card h3{ font-size:16px; margin:0 0 8px; font-family:'Inter',sans-serif; font-weight:700; line-height:1.3; }
+  .card p{ color:var(--ink-dim); font-size:13.5px; margin:0 0 14px; flex:1; }
+  .card .read{ font-size:12.5px; color:var(--lime-soft); font-weight:600; }
+
+  .subscribe{ background:linear-gradient(120deg, rgba(198,241,53,.08), transparent 60%), var(--bg-card); border:1px solid var(--line); border-radius:6px; padding:34px; text-align:center; margin-bottom:60px; }
+  .subscribe h3{ font-family:'Archivo Black',sans-serif; font-size:20px; margin:0 0 8px; }
+  .subscribe p{ color:var(--ink-dim); font-size:13.5px; margin:0 0 20px; }
+  .subform{ display:flex; gap:10px; justify-content:center; max-width:380px; margin:0 auto; flex-wrap:wrap; }
+  .subform input{ flex:1; min-width:180px; background:#0d0d0b; border:1px solid var(--line); color:var(--ink); border-radius:3px; padding:10px 12px; font-size:13.5px; font-family:inherit; }
+
+  footer{ border-top:1px solid var(--line); padding-block:28px 40px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; color:var(--ink-faint); font-size:12.5px; }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap">
+
+<div class="glow"></div>
+<div class="shell">
+  <nav>
+    <a class="brand" href="#"><span>MAZZ</span><span class="ai">.AI</span></a>
+    <div class="navlinks">
+      <a href="#">Home</a><a href="#">Pricing</a><a href="#">FAQ</a><a href="#">Blog</a>
+    </div>
+    <a class="btn btn-lime" href="#">Start free pilot</a>
+  </nav>
+
+  <header class="page">
+    <p class="eyebrow">Blog</p>
+    <h1>Notes from the kitchen and the call log</h1>
+    <p>What we're learning rolling out AI call &amp; chat handling across Cairo restaurants.</p>
+  </header>
+
+  <article class="featured">
+    <div class="meta"><span class="tag">Pilot notes</span><span>·</span><span>Oct 28, 2026</span><span>·</span><span>6 min read</span></div>
+    <h2>Why Cairo restaurants are losing orders to unanswered phones</h2>
+    <div class="article-body">
+      <p>Friday at 8 PM is the best and worst hour of the week for a busy restaurant. The dining room is full, the kitchen is behind, and the phone is ringing. Someone has to decide, in real time, whether to drop a plate and answer it. Most nights, the phone loses.</p>
+      <p>That's not a staffing failure — it's math. A host running the floor can hold maybe two calls in a row before the line backs up or the call gets rushed. Every call after that either rings out or gets answered badly: half-heard orders, wrong delivery times, a customer who hangs up and orders from whoever picks up first.</p>
+      <div class="pull">"We weren't losing customers to bad food. We were losing them before they ever got a plate in front of them."</div>
+      <p>That's the problem MAZZ.AI was built around. <strong>Every call gets answered on the first ring</strong>, whether it's the quietest Tuesday lunch or the loudest Friday night. The AI knows the real menu, the real delivery zones, and the real wait time — because it's trained on your data, not a generic script.</p>
+      <p>It doesn't replace the floor staff. During the pilot, every restaurant starts at 25% AI and 75% human, with a person backing up every call. The ratio shifts month over month as the AI proves itself on your specific menu and your specific customers — never before.</p>
+      <p>The restaurants in our pilot aren't trying to automate hospitality. They're trying to stop losing orders to a phone nobody had a free hand to answer.</p>
+    </div>
+  </article>
+
+  <p class="sec-label">More from the blog</p>
+  <div class="grid">
+    <div class="card">
+      <div class="meta"><span class="tag">Product</span><span>·</span><span>Oct 21, 2026</span><span>·</span><span>4 min</span></div>
+      <h3>Inside the handoff: teaching MAZZ.AI when to call a human</h3>
+      <p>Complaints, anything that smells like an edge case — here's exactly how and when the AI decides to route a call to your staff, and what context it hands over. (Custom orders, it turns out, aren't one of those cases — the AI takes those itself.)</p>
+      <a class="read" href="#">Read the post →</a>
+    </div>
+    <div class="card">
+      <div class="meta"><span class="tag">Engineering</span><span>·</span><span>Oct 14, 2026</span><span>·</span><span>5 min</span></div>
+      <h3>Arabic and English in the same call, mid-sentence</h3>
+      <p>Egyptian customers code-switch constantly, often inside a single sentence. We walk through how MAZZ.AI tracks language per utterance instead of per call.</p>
+      <a class="read" href="#">Read the post →</a>
+    </div>
+    <div class="card">
+      <div class="meta"><span class="tag">Pilot notes</span><span>·</span><span>Oct 6, 2026</span><span>·</span><span>3 min</span></div>
+      <h3>What our 3-month pilot actually measures</h3>
+      <p>Not "did the AI sound nice." We track order accuracy, missed-call recovery, handle time, and how often a human had to step in — and we show restaurants the raw numbers.</p>
+      <a class="read" href="#">Read the post →</a>
+    </div>
+    <div class="card">
+      <div class="meta"><span class="tag">Product</span><span>·</span><span>Sep 29, 2026</span><span>·</span><span>4 min</span></div>
+      <h3>Why we don't flip the switch on day one</h3>
+      <p>25% AI in month one, 100% after the pilot. Here's the reasoning behind the slow ramp, and what it looks like from behind the counter.</p>
+      <a class="read" href="#">Read the post →</a>
+    </div>
+  </div>
+
+  <div class="subscribe">
+    <h3>Get the next post</h3>
+    <p>Short, occasional notes on building voice AI for restaurants. No spam.</p>
+    <form class="subform" id="subForm">
+      <input type="email" placeholder="you@restaurant.com" required>
+      <button class="btn btn-lime" type="submit">Subscribe</button>
+    </form>
+  </div>
+
+  <footer>
+    <span>© 2026 MAZZ.AI. All rights reserved.</span>
+    <span>Cairo, Egypt</span>
+  </footer>
+</div>
+<script>
+  document.getElementById('subForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var btn = this.querySelector('button');
+    btn.textContent = 'Subscribed ✓';
+  });
+</script>

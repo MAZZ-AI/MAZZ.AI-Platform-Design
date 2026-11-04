@@ -1,0 +1,279 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>MAZZ.AI — AI Restaurant Assistant</title>
+<style>
+  :root{
+    /* Layout: diagonal lime beams bracket the hero like the logo; sections below sit on dark receipt-ticket cards with dashed tear lines */
+    --bg:#0a0a0a;
+    --bg-raised:#111110;
+    --bg-card:#131310;
+    --line:#2a2a22;
+    --ink:#f5f5f0;
+    --ink-dim:#a2a298;
+    --ink-faint:#6b6b62;
+    --lime:#c6f135;
+    --lime-soft:#e9ffa8;
+    --lime-dim:#4d5a16;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'Inter',ui-sans-serif,system-ui,sans-serif;
+    font-size:15px; line-height:1.6;
+    padding-left:max(16px, env(safe-area-inset-left,0px));
+    padding-right:max(16px, env(safe-area-inset-right,0px));
+    overflow-x:hidden; position:relative;
+  }
+  a{color:inherit;}
+  .glow-tr,.glow-bl{ position:fixed; z-index:0; pointer-events:none; width:62vmax; height:62vmax; filter:blur(70px);
+    background:radial-gradient(circle at center, rgba(198,241,53,.45), rgba(198,241,53,0) 62%); }
+  .glow-tr{ top:-30vmax; right:-28vmax; }
+  .glow-bl{ bottom:-30vmax; left:-28vmax; }
+
+  .shell{ max-width:1120px; margin:0 auto; position:relative; z-index:1; }
+  section{ padding-block:64px; }
+  h1,h2,h3{ font-family:'Archivo Black',sans-serif; text-wrap:balance; margin:0; }
+  .eyebrow{ font-family:'Space Mono',ui-monospace,monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--lime); margin:0 0 10px; }
+
+  /* nav */
+  nav{ display:flex; align-items:center; justify-content:space-between; padding-block:22px; position:relative; z-index:2; }
+  .brand{ display:flex; align-items:baseline; gap:1px; text-decoration:none; color:#ffffff; }
+  .brand span{ font-family:'Archivo Black',sans-serif; font-size:21px; letter-spacing:.3px; }
+  .brand .ai{ color:var(--lime); }
+  .navlinks{ display:flex; gap:28px; font-size:14px; color:#ffffff; }
+  .navlinks a{ text-decoration:none; }
+  .navlinks a:hover{ color:var(--lime); }
+  .navcta{ display:flex; gap:10px; align-items:center; }
+  .btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px; border-radius:3px; font-weight:700; font-size:14px; padding:11px 20px; text-decoration:none; cursor:pointer; border:1px solid transparent; font-family:inherit; transition:background .15s,border-color .15s,transform .05s; }
+  .btn:active{ transform:scale(.98); }
+  .btn-lime{ background:var(--lime); color:#0a0a0a; }
+  .btn-lime:hover{ background:var(--lime-soft); }
+  .btn-ghost{ background:transparent; color:var(--ink); border-color:var(--line); }
+  .btn-ghost:hover{ border-color:var(--lime-dim); }
+  .btn-sm{ padding:9px 16px; font-size:13px; }
+  @media (max-width:760px){ .navlinks{ display:none; } }
+
+  /* hero */
+  .hero{ padding-top:30px; padding-bottom:56px; text-align:center; }
+  .hero h1{ font-size:clamp(34px,6vw,62px); line-height:1.04; max-width:880px; margin:0 auto 20px; }
+  .hero .accent{ color:var(--lime); }
+  .hero p.lead{ max-width:560px; margin:0 auto 32px; color:var(--ink-dim); font-size:17px; }
+  .hero-ctas{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:18px; }
+  .hero-note{ font-family:'Space Mono',monospace; font-size:12px; color:var(--ink-faint); }
+
+  /* receipt demo */
+  .receipt{ max-width:360px; margin:52px auto 0; background:var(--bg-card); border:1px solid var(--line); border-radius:4px; text-align:left; padding:22px 22px 18px; position:relative; }
+  .receipt::before{ content:""; position:absolute; top:-1px; left:16px; right:16px; height:1px; background:repeating-linear-gradient(90deg,transparent 0 6px,var(--line) 6px 7px); }
+  .receipt .rline{ display:flex; justify-content:space-between; gap:12px; font-family:'Space Mono',monospace; font-size:12.5px; color:var(--ink-dim); padding:6px 0; border-bottom:1px dashed var(--line); }
+  .receipt .rline b{ color:var(--ink); font-weight:600; }
+  .receipt .rline:last-child{ border-bottom:none; }
+  .receipt .rtag{ display:inline-block; font-family:'Space Mono',monospace; font-size:10.5px; letter-spacing:.06em; padding:2px 7px; border-radius:2px; background:var(--lime-dim); color:var(--lime-soft); }
+
+  /* section headers */
+  .sec-head{ text-align:center; max-width:620px; margin:0 auto 44px; }
+  .sec-head h2{ font-size:clamp(24px,3.4vw,34px); }
+  .sec-head p{ color:var(--ink-dim); margin-top:12px; }
+
+  /* how it works */
+  .steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .step{ background:var(--bg-card); border:1px solid var(--line); border-radius:4px; padding:26px 22px; min-width:0; }
+  .step .num{ font-family:'Space Mono',monospace; color:var(--lime); font-size:12px; margin-bottom:14px; }
+  .step h3{ font-size:17px; margin-bottom:8px; }
+  .step p{ color:var(--ink-dim); font-size:13.5px; margin:0; }
+  @media (max-width:720px){ .steps{ grid-template-columns:1fr; } }
+
+  /* features */
+  .features{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .feat{ background:var(--bg-raised); border:1px solid var(--line); border-radius:4px; padding:22px; min-width:0; }
+  .feat h3{ font-size:15px; margin:0 0 6px; }
+  .feat p{ color:var(--ink-dim); font-size:13px; margin:0; line-height:1.55; }
+  .feat .dot{ width:8px; height:8px; border-radius:50%; background:var(--lime); margin-bottom:12px; }
+  @media (max-width:860px){ .features{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:560px){ .features{ grid-template-columns:1fr; } }
+
+  /* roadmap */
+  .roadmap-wrap{ background:var(--bg-card); border:1px solid var(--line); border-radius:4px; padding:36px; }
+  .roadmap{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .rm-item{ text-align:center; padding:16px 8px; border-left:1px dashed var(--line); }
+  .rm-item:first-child{ border-left:none; }
+  .rm-month{ font-family:'Space Mono',monospace; font-size:11px; color:var(--ink-faint); letter-spacing:.08em; text-transform:uppercase; margin-bottom:10px; }
+  .rm-split{ font-family:'Archivo Black',sans-serif; font-size:15px; }
+  .rm-split .l{ color:var(--lime); }
+  .rm-bar{ height:6px; border-radius:3px; background:var(--line); margin-top:10px; overflow:hidden; display:flex; }
+  .rm-bar i{ display:block; background:var(--lime); height:100%; }
+  @media (max-width:700px){ .roadmap{ grid-template-columns:1fr 1fr; } .rm-item{ border-left:none; border-top:1px dashed var(--line); } .rm-item:nth-child(1),.rm-item:nth-child(2){border-top:none;} }
+
+  /* pricing teaser */
+  .price-teaser{ display:grid; grid-template-columns:1.1fr .9fr; gap:0; background:var(--bg-card); border:1px solid var(--line); border-radius:4px; overflow:hidden; }
+  .price-teaser .pt-left{ padding:40px; }
+  .price-teaser .pt-right{ padding:40px; border-left:1px dashed var(--line); background:var(--bg-raised); }
+  .pt-num{ font-family:'Archivo Black',sans-serif; font-size:44px; color:var(--lime); line-height:1; }
+  .pt-num small{ font-family:'Space Mono',monospace; font-size:14px; color:var(--ink-dim); font-weight:400; margin-left:6px; }
+  .pt-list{ list-style:none; margin:18px 0 0; padding:0; display:flex; flex-direction:column; gap:10px; font-size:13.5px; color:var(--ink-dim); }
+  .pt-list li{ display:flex; gap:9px; }
+  .pt-list li::before{ content:"—"; color:var(--lime); }
+  @media (max-width:760px){ .price-teaser{ grid-template-columns:1fr; } .price-teaser .pt-right{ border-left:none; border-top:1px dashed var(--line); } }
+
+  /* founding partner */
+  .fp{ display:flex; gap:28px; align-items:center; background:linear-gradient(135deg, rgba(198,241,53,.08), transparent 60%), var(--bg-raised); border:1px solid var(--lime-dim); border-radius:4px; padding:34px 36px; }
+  .fp-slots{ font-family:'Archivo Black',sans-serif; font-size:40px; color:var(--lime); flex-shrink:0; }
+  .fp-slots small{ display:block; font-family:'Space Mono',monospace; font-size:10px; color:var(--ink-faint); letter-spacing:.1em; text-transform:uppercase; margin-top:4px; }
+  .fp p{ margin:6px 0 0; color:var(--ink-dim); font-size:13.5px; max-width:520px; }
+  @media (max-width:640px){ .fp{ flex-direction:column; align-items:flex-start; } }
+
+  /* final cta */
+  .final{ text-align:center; padding-block:80px; }
+  .final h2{ font-size:clamp(26px,4vw,40px); margin-bottom:14px; }
+  .final p{ color:var(--ink-dim); margin-bottom:28px; }
+
+  footer{ border-top:1px solid var(--line); padding-block:36px; margin-top:20px; }
+  .foot-grid{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:28px; }
+  .foot-cols{ display:flex; gap:56px; flex-wrap:wrap; }
+  .foot-col h4{ font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); margin:0 0 12px; font-weight:600; }
+  .foot-col a{ display:block; color:var(--ink-dim); text-decoration:none; font-size:13.5px; margin-bottom:9px; }
+  .foot-col a:hover{ color:var(--ink); }
+  .foot-bottom{ margin-top:36px; padding-top:20px; border-top:1px solid var(--line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; color:var(--ink-faint); font-size:12.5px; }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap">
+
+<div class="glow-tr"></div><div class="glow-bl"></div>
+
+<div class="shell">
+  <nav>
+    <a class="brand" href="#"><span>MAZZ</span><span class="ai">.AI</span></a>
+    <div class="navlinks">
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#blog">Blog</a>
+    </div>
+    <div class="navcta">
+      <a class="btn btn-ghost btn-sm" href="#">Sign in</a>
+      <a class="btn btn-lime btn-sm" href="#">Start free pilot</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <p class="eyebrow">AI voice &amp; chat for restaurants</p>
+    <h1>Every call answered.<br>Every order <span class="accent">taken.</span></h1>
+    <p class="lead">MAZZ.AI picks up your restaurant's calls and chats, takes orders straight off your menu, answers delivery questions, and hands off to your team the moment it should.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-lime" href="#">Start your 3-month free pilot</a>
+      <a class="btn btn-ghost" href="#pricing">See pricing</a>
+    </div>
+    <p class="hero-note">NO SETUP FEE · FIRST 1,000 MINUTES FREE · CANCEL DURING PILOT</p>
+
+    <div class="receipt">
+      <div class="rline"><span>Incoming call</span><b>Cairo Branch</b></div>
+      <div class="rline"><span>Handled by</span><span class="rtag">MAZZ.AI</span></div>
+      <div class="rline"><span>1× Koshari, large</span><b>EGP 85</b></div>
+      <div class="rline"><span>2× Mango juice</span><b>EGP 60</b></div>
+      <div class="rline"><span>Delivery to Maadi</span><b>~35 min</b></div>
+      <div class="rline"><span>Order confirmed</span><b style="color:var(--lime);">✓ sent to kitchen</b></div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="sec-head">
+      <p class="eyebrow">How it works</p>
+      <h2>Your menu becomes the script</h2>
+      <p>No bots reading a generic script — MAZZ.AI is trained on your menu, hours, and delivery zones.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="num">01 / ANSWER</div><h3>The call or chat comes in</h3><p>MAZZ.AI answers in Arabic or English, on the first ring, every time — even during Friday night rush.</p></div>
+      <div class="step"><div class="num">02 / HANDLE</div><h3>Orders, menu, delivery</h3><p>It takes the order, answers menu and allergy questions, quotes delivery time, and confirms the total.</p></div>
+      <div class="step"><div class="num">03 / HANDOFF</div><h3>A human steps in when needed</h3><p>Complaints or anything outside its scope route straight to your staff, with full context. Custom orders stay with the AI.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">Built for the floor and the phone</p>
+      <h2>What MAZZ.AI handles</h2>
+    </div>
+    <div class="features">
+      <div class="feat"><div class="dot"></div><h3>Order taking</h3><p>Full orders captured, upsells included, sent straight to your kitchen or POS.</p></div>
+      <div class="feat"><div class="dot"></div><h3>Menu &amp; allergy Q&amp;A</h3><p>Ingredients, spice level, and allergens answered instantly from your real menu.</p></div>
+      <div class="feat"><div class="dot"></div><h3>Delivery &amp; hours</h3><p>Accurate delivery zones, wait times, and opening hours, no "let me check."</p></div>
+      <div class="feat"><div class="dot"></div><h3>Human handoff</h3><p>Escalates complaints and edge cases to your team with the full conversation attached.</p></div>
+      <div class="feat"><div class="dot"></div><h3>Arabic + English</h3><p>Switches language mid-conversation the way your customers actually talk.</p></div>
+      <div class="feat"><div class="dot"></div><h3>Call &amp; chat analytics</h3><p>See what's asked most, missed-call recovery, and minutes used, from one dashboard.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">The pilot</p>
+      <h2>You control how fast AI takes over</h2>
+      <p>Every restaurant ramps up on the same four-month path — human-backed from day one.</p>
+    </div>
+    <div class="roadmap-wrap">
+      <div class="roadmap">
+        <div class="rm-item"><div class="rm-month">Month 1</div><div class="rm-split"><span class="l">25%</span> AI / 75% Human</div><div class="rm-bar"><i style="width:25%;"></i></div></div>
+        <div class="rm-item"><div class="rm-month">Month 2</div><div class="rm-split"><span class="l">50%</span> AI / 50% Human</div><div class="rm-bar"><i style="width:50%;"></i></div></div>
+        <div class="rm-item"><div class="rm-month">Month 3</div><div class="rm-split"><span class="l">75%</span> AI / 25% Human</div><div class="rm-bar"><i style="width:75%;"></i></div></div>
+        <div class="rm-item"><div class="rm-month">After pilot</div><div class="rm-split"><span class="l">100%</span> AI</div><div class="rm-bar"><i style="width:100%;"></i></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="sec-head">
+      <p class="eyebrow">Pricing</p>
+      <h2>Simple, pay-per-minute pricing</h2>
+    </div>
+    <div class="price-teaser">
+      <div class="pt-left">
+        <div class="eyebrow" style="margin-bottom:6px;">After your free pilot</div>
+        <div class="pt-num">6 EGP<small>/ minute</small></div>
+        <ul class="pt-list">
+          <li>First 1,000 minutes free, every pilot</li>
+          <li>No contract during the 3-month pilot</li>
+          <li>Billed monthly, cancel anytime</li>
+        </ul>
+      </div>
+      <div class="pt-right">
+        <div class="eyebrow" style="margin-bottom:6px;">Included free</div>
+        <h3 style="font-size:18px;margin-bottom:10px;">3-month pilot, on us</h3>
+        <p style="color:var(--ink-dim);font-size:13.5px;margin:0 0 18px;">Test MAZZ.AI inside your real workflow and measure real-world performance before paying anything.</p>
+        <a class="btn btn-lime btn-sm" href="#">See full pricing &amp; Founding Partner offer →</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="fp">
+      <div class="fp-slots">3<small>Spots left</small></div>
+      <div>
+        <h3 style="font-size:19px;">Founding Partner Program</h3>
+        <p>The first 3 restaurants to join become partners, not just clients: 12 months of maintenance &amp; support, free development on requested features, and priority on everything we build next.</p>
+      </div>
+      <a class="btn btn-ghost btn-sm" style="margin-left:auto;flex-shrink:0;" href="#">Learn more</a>
+    </div>
+  </section>
+
+  <section class="final">
+    <h2>Stop losing orders to a busy line.</h2>
+    <p>Start a free 3-month pilot — no setup fee, 1,000 minutes on us.</p>
+    <a class="btn btn-lime" href="#">Start your free pilot</a>
+  </section>
+
+  <footer>
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#"><span>MAZZ</span><span class="ai">.AI</span></a>
+        <p style="color:var(--ink-faint);font-size:13px;max-width:240px;margin-top:12px;">AI voice &amp; chat assistant for restaurants, built in Egypt.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col"><h4>Product</h4><a href="#">Home</a><a href="#pricing">Pricing</a><a href="#how">How it works</a></div>
+        <div class="foot-col"><h4>Company</h4><a href="#blog">Blog</a><a href="#faq">FAQ</a><a href="#">Terms &amp; conditions</a></div>
+        <div class="foot-col"><h4>Get started</h4><a href="#">Sign in</a><a href="#">Start free pilot</a></div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 MAZZ.AI. All rights reserved.</span>
+      <span>Cairo, Egypt</span>
+    </div>
+  </footer>
+</div>

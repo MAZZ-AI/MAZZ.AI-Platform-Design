@@ -1,0 +1,237 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Pricing</title>
+<style>
+  :root{
+    --bg:#0a0a0a; --bg-raised:#111110; --bg-card:#131310; --line:#2a2a22;
+    --ink:#f5f5f0; --ink-dim:#a2a298; --ink-faint:#6b6b62;
+    --lime:#c6f135; --lime-soft:#e9ffa8; --lime-dim:#4d5a16; --lime-wash:#171a0d;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  body{ background:var(--bg); color:var(--ink); font-family:'Inter',ui-sans-serif,system-ui,sans-serif; font-size:15px; line-height:1.6;
+    padding-left:max(16px, env(safe-area-inset-left,0px)); padding-right:max(16px, env(safe-area-inset-right,0px)); position:relative; overflow-x:hidden; }
+  a{ color:inherit; text-decoration:none; }
+  .glow-tr,.glow-bl{ position:fixed; z-index:0; pointer-events:none; width:60vmax; height:60vmax; filter:blur(70px);
+    background:radial-gradient(circle at center, rgba(198,241,53,.4), rgba(198,241,53,0) 62%); }
+  .glow-tr{ top:-30vmax; right:-28vmax; } .glow-bl{ bottom:-30vmax; left:-28vmax; }
+  .shell{ max-width:1020px; margin:0 auto; position:relative; z-index:1; }
+
+  nav{ display:flex; align-items:center; justify-content:space-between; padding-block:22px; }
+  .brand{ display:flex; align-items:baseline; gap:1px; color:#ffffff; }
+  .brand span{ font-family:'Archivo Black',sans-serif; font-size:21px; }
+  .brand .ai{ color:var(--lime); }
+  .navlinks{ display:flex; gap:28px; font-size:14px; color:#ffffff; }
+  .navlinks a:hover{ color:var(--lime); }
+  .btn{ display:inline-flex; align-items:center; gap:7px; border-radius:3px; font-weight:700; font-size:13.5px; padding:10px 18px; border:1px solid transparent; cursor:pointer; font-family:inherit; }
+  .btn-lime{ background:var(--lime); color:#0a0a0a; }
+  .btn-lime:hover{ background:var(--lime-soft); }
+  .btn-ghost{ background:transparent; color:var(--ink); border-color:var(--line); }
+  @media (max-width:700px){ .navlinks{ display:none; } }
+
+  header.page{ padding:28px 0 20px; text-align:center; }
+  .eyebrow{ font-family:'Space Mono',ui-monospace,monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--lime); margin:0 0 10px; }
+  h1{ font-family:'Archivo Black',sans-serif; font-size:clamp(30px,5vw,46px); margin:0 0 12px; text-wrap:balance; }
+  header.page p{ color:var(--ink-dim); max-width:540px; margin:0 auto; }
+
+  section{ padding-block:40px; }
+  .sec-head{ max-width:600px; margin:0 0 26px; }
+  .sec-head h2{ font-family:'Archivo Black',sans-serif; font-size:22px; margin:0 0 8px; }
+  .sec-head p{ color:var(--ink-dim); font-size:13.5px; margin:0; }
+
+  /* pilot hero card */
+  .pilot-card{ background:var(--bg-card); border:1px solid var(--line); border-radius:6px; padding:36px; display:grid; grid-template-columns:1fr auto; gap:28px; align-items:center; }
+  .pilot-card .big{ font-family:'Archivo Black',sans-serif; font-size:40px; color:var(--lime); line-height:1; }
+  .pilot-card .big small{ display:block; font-family:'Space Mono',monospace; font-size:11px; color:var(--ink-faint); letter-spacing:.08em; text-transform:uppercase; margin-top:8px; }
+  .pilot-card p{ color:var(--ink-dim); font-size:14px; max-width:520px; margin:8px 0 0; }
+  @media (max-width:640px){ .pilot-card{ grid-template-columns:1fr; text-align:left; } }
+
+  /* roadmap */
+  .roadmap-wrap{ background:var(--bg-card); border:1px solid var(--line); border-radius:6px; padding:30px; }
+  .roadmap{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .rm-item{ text-align:left; padding:14px 16px; border-left:1px dashed var(--line); }
+  .rm-item:first-child{ border-left:none; padding-left:0; }
+  .rm-month{ font-family:'Space Mono',monospace; font-size:11px; color:var(--ink-faint); letter-spacing:.08em; text-transform:uppercase; margin-bottom:10px; }
+  .rm-split{ font-family:'Archivo Black',sans-serif; font-size:15px; }
+  .rm-split .l{ color:var(--lime); }
+  .rm-bar{ height:6px; border-radius:3px; background:var(--line); margin-top:10px; overflow:hidden; }
+  .rm-bar i{ display:block; background:var(--lime); height:100%; }
+  @media (max-width:700px){ .roadmap{ grid-template-columns:1fr 1fr; } .rm-item{ border-left:none; border-top:1px dashed var(--line); padding-left:0; } }
+
+  /* rate + calculator */
+  .rate-wrap{ display:grid; grid-template-columns:.9fr 1.1fr; gap:16px; }
+  @media (max-width:800px){ .rate-wrap{ grid-template-columns:1fr; } }
+  .rate-card{ background:var(--bg-card); border:1px solid var(--line); border-radius:6px; padding:30px; }
+  .rate-num{ font-family:'Archivo Black',sans-serif; font-size:48px; color:var(--lime); line-height:1; }
+  .rate-num small{ font-family:'Space Mono',monospace; font-size:14px; color:var(--ink-dim); font-weight:400; margin-left:6px; }
+  .rate-card ul{ list-style:none; margin:20px 0 0; padding:0; display:flex; flex-direction:column; gap:10px; font-size:13.5px; color:var(--ink-dim); }
+  .rate-card li{ display:flex; gap:9px; }
+  .rate-card li::before{ content:"—"; color:var(--lime); }
+
+  .calc{ background:var(--bg-raised); border:1px solid var(--line); border-radius:6px; padding:28px; }
+  .calc h3{ font-size:14px; margin:0 0 4px; }
+  .calc .calc-sub{ color:var(--ink-faint); font-size:12px; margin-bottom:18px; }
+  .calc input[type=range]{ width:100%; accent-color:var(--lime); }
+  .calc-row{ display:flex; justify-content:space-between; font-family:'Space Mono',monospace; font-size:12px; color:var(--ink-faint); margin-top:6px; }
+  .calc-result{ margin-top:22px; display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .calc-tile{ background:var(--bg-card); border:1px solid var(--line); border-radius:4px; padding:14px 16px; }
+  .calc-tile .l{ font-size:11px; color:var(--ink-faint); margin-bottom:6px; }
+  .calc-tile .v{ font-family:'Archivo Black',sans-serif; font-size:19px; }
+  .calc-tile .v.lime{ color:var(--lime); }
+  .calc-note{ font-size:11.5px; color:var(--ink-faint); margin-top:14px; line-height:1.5; }
+
+  /* founding partner */
+  .fp-card{ background:linear-gradient(135deg, rgba(198,241,53,.08), transparent 60%), var(--bg-card); border:1px solid var(--lime-dim); border-radius:6px; padding:36px; }
+  .fp-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap; margin-bottom:20px; }
+  .fp-slots{ font-family:'Archivo Black',sans-serif; font-size:40px; color:var(--lime); }
+  .fp-slots small{ display:block; font-family:'Space Mono',monospace; font-size:10.5px; color:var(--ink-faint); letter-spacing:.1em; text-transform:uppercase; margin-top:4px; }
+  .fp-card h2{ font-family:'Archivo Black',sans-serif; font-size:22px; margin:0 0 6px; }
+  .fp-card > p{ color:var(--ink-dim); font-size:14px; max-width:600px; margin:0; }
+  .fp-benefits{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:10px; }
+  @media (max-width:760px){ .fp-benefits{ grid-template-columns:1fr; } }
+  .fp-benefit{ background:var(--bg-raised); border:1px solid var(--line); border-radius:4px; padding:18px; }
+  .fp-benefit .num{ font-family:'Space Mono',monospace; color:var(--lime); font-size:11px; margin-bottom:8px; }
+  .fp-benefit h4{ font-size:14px; margin:0 0 6px; }
+  .fp-benefit p{ color:var(--ink-dim); font-size:12.5px; margin:0; line-height:1.5; }
+
+  .faq-teaser{ text-align:center; background:var(--bg-card); border:1px solid var(--line); border-radius:6px; padding:30px; }
+  .faq-teaser h3{ font-size:16px; margin:0 0 6px; }
+  .faq-teaser p{ color:var(--ink-dim); font-size:13px; margin:0 0 16px; }
+
+  .final{ text-align:center; padding-block:60px 70px; }
+  .final h2{ font-family:'Archivo Black',sans-serif; font-size:clamp(24px,4vw,36px); margin:0 0 12px; }
+  .final p{ color:var(--ink-dim); margin:0 0 24px; }
+
+  footer{ border-top:1px solid var(--line); padding-block:28px 40px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; color:var(--ink-faint); font-size:12.5px; }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap">
+
+<div class="glow-tr"></div><div class="glow-bl"></div>
+<div class="shell">
+  <nav>
+    <a class="brand" href="#"><span>MAZZ</span><span class="ai">.AI</span></a>
+    <div class="navlinks"><a href="#">Home</a><a href="#">Pricing</a><a href="#">FAQ</a><a href="#">Blog</a></div>
+    <a class="btn btn-lime" href="#">Sign in</a>
+  </nav>
+
+  <header class="page">
+    <p class="eyebrow">Pricing</p>
+    <h1>Our Pilot &amp; Partnership Offer</h1>
+    <p>Test MAZZ.AI inside your restaurant's real workflow, free for three months, and see the real-world numbers before you pay a thing.</p>
+  </header>
+
+  <section>
+    <div class="pilot-card">
+      <div>
+        <div class="eyebrow" style="margin-bottom:8px;">Open to every new restaurant</div>
+        <h2 style="font-family:'Archivo Black',sans-serif;font-size:24px;margin:0;">3-month free pilot</h2>
+        <p>Test MAZZ.AI inside your restaurant's workflow and measure real-world performance — order accuracy, missed-call recovery, and handle time — before any billing starts.</p>
+      </div>
+      <div class="big">3<small>Months free</small></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>The AI adoption roadmap</h2>
+      <p>You never hand the phones over all at once. Every pilot follows the same four-month path, backed by a human at every stage.</p>
+    </div>
+    <div class="roadmap-wrap">
+      <div class="roadmap">
+        <div class="rm-item"><div class="rm-month">Month 1</div><div class="rm-split"><span class="l">25%</span> AI / 75% Human</div><div class="rm-bar"><i style="width:25%;"></i></div></div>
+        <div class="rm-item"><div class="rm-month">Month 2</div><div class="rm-split"><span class="l">50%</span> AI / 50% Human</div><div class="rm-bar"><i style="width:50%;"></i></div></div>
+        <div class="rm-item"><div class="rm-month">Month 3</div><div class="rm-split"><span class="l">75%</span> AI / 25% Human</div><div class="rm-bar"><i style="width:75%;"></i></div></div>
+        <div class="rm-item"><div class="rm-month">After pilot</div><div class="rm-split"><span class="l">100%</span> AI</div><div class="rm-bar"><i style="width:100%;"></i></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>What it costs after the pilot</h2>
+      <p>One flat per-minute rate. No tiers, no seat fees, no setup cost.</p>
+    </div>
+    <div class="rate-wrap">
+      <div class="rate-card">
+        <div class="rate-num">6 EGP<small>/ minute</small></div>
+        <ul>
+          <li>First 1,000 minutes free, every pilot</li>
+          <li>Billed monthly in arrears</li>
+          <li>No contract during the 3-month pilot</li>
+          <li>Pause or cancel anytime after</li>
+        </ul>
+      </div>
+      <div class="calc">
+        <h3>Estimate your monthly cost</h3>
+        <div class="calc-sub">Drag to match your restaurant's call &amp; chat minutes per month</div>
+        <input type="range" id="minSlider" min="0" max="15000" step="100" value="1800">
+        <div class="calc-row"><span>0 min</span><span id="minLabel">1,800 min / month</span><span>15,000 min</span></div>
+        <div class="calc-result">
+          <div class="calc-tile"><div class="l">Free minutes used</div><div class="v" id="freeUsed">1,000</div></div>
+          <div class="calc-tile"><div class="l">Billable minutes</div><div class="v" id="billable">800</div></div>
+          <div class="calc-tile" style="grid-column:1/-1;"><div class="l">Estimated monthly cost</div><div class="v lime" id="cost">4,800 EGP</div></div>
+        </div>
+        <p class="calc-note">Estimate only, applies after your 3-month free pilot. First 1,000 minutes each month are free for life; every minute after that is billed at 6 EGP. <strong style="color:var(--lime-soft);">For sure, no maximum limit</strong> — the slider stops at 15,000 min just to keep the estimate readable; MAZZ.AI scales to however many calls and chats your restaurant gets.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="fp-card">
+      <div class="fp-top">
+        <div>
+          <h2>Founding Partner Program</h2>
+          <p>The first 3 restaurants to join MAZZ.AI become Founding Partners — not just clients.</p>
+        </div>
+        <div class="fp-slots">3<small>Spots total</small></div>
+      </div>
+      <div class="fp-benefits">
+        <div class="fp-benefit"><div class="num">01</div><h4>12 months of support</h4><p>A full year of maintenance and support included, beyond the standard pilot and plan.</p></div>
+        <div class="fp-benefit"><div class="num">02</div><h4>Free feature development</h4><p>We build the features you request at no charge. If a feature raises the per-minute cost, only that increase is billed.</p></div>
+        <div class="fp-benefit"><div class="num">03</div><h4>Priority on everything next</h4><p>Founding Partners get first access and priority development on every feature we ship after.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="faq-teaser">
+      <h3>More questions about pricing?</h3>
+      <p>Billing, the pilot, and the Founding Partner terms, answered in full.</p>
+      <a class="btn btn-ghost" href="#">Read the FAQ →</a>
+    </div>
+  </section>
+
+  <section class="final">
+    <h2>Start your free pilot today</h2>
+    <p>No setup fee. First 1,000 minutes free. Three Founding Partner spots left.</p>
+    <a class="btn btn-lime" href="#">Apply for the pilot</a>
+  </section>
+
+  <footer>
+    <span>© 2026 MAZZ.AI. All rights reserved.</span>
+    <span>Cairo, Egypt</span>
+  </footer>
+</div>
+
+<script>
+  var slider = document.getElementById('minSlider');
+  var minLabel = document.getElementById('minLabel');
+  var freeUsed = document.getElementById('freeUsed');
+  var billable = document.getElementById('billable');
+  var cost = document.getElementById('cost');
+  var RATE = 6, FREE = 1000;
+
+  function fmt(n){ return n.toLocaleString('en-US'); }
+
+  function update(){
+    var total = parseInt(slider.value, 10);
+    var free = Math.min(total, FREE);
+    var bill = Math.max(0, total - FREE);
+    minLabel.textContent = fmt(total) + ' min / month';
+    freeUsed.textContent = fmt(free);
+    billable.textContent = fmt(bill);
+    cost.textContent = fmt(bill * RATE) + ' EGP';
+  }
+  slider.addEventListener('input', update);
+  update();
+</script>
